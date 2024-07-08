@@ -1,3 +1,13 @@
+// Import mappool
+const roundNameEl = document.getElementById("roundName")
+async function getMappool() {
+    const response = await fetch("http://127.0.0.1:24050/SRS/_data/beatmaps.json")
+    const mappool = await response.json()
+    roundNameEl.innerText = mappool.roundName.toLowerCase()
+}
+
+getMappool()
+
 // Socket Events
 // Credits: VictimCrasher - https://github.com/VictimCrasher/static/tree/master/WaveTournament
 let socket = new ReconnectingWebSocket("ws://" + location.host + "/ws")
