@@ -66,3 +66,13 @@
     right: 175px;
     transform: translateX(50%);
 }
+
+/* Moving Score Bar */
+.movingScoreBar {
+    position: absolute; top: 901px;
+    width: 0px; height: 14px;
+    background-color: white;
+    transition: 500ms ease-in-out;
+}
+#purpleMovingScoreBar { right: 50%; }
+#blueMovingScoreBar { left: 50%; }
