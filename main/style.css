@@ -11,12 +11,13 @@
     width: 1920px; height: 1080px;
     background-image: url("static/background.png");
     background-size: cover;
+    font-family: "Gotham"; font-weight: 700; 
 }
 
 /* Team Names */
 .teamName {
     position: absolute; top: 36px;
-    font-family: "Gotham"; font-weight: 700; font-size: 50px;
+    font-size: 50px;
     color: white;
     letter-spacing: 2.5px;
 }
@@ -45,7 +46,7 @@
 #roundName {
     position: absolute; left: 972px; top: 141px;
     transform: translateX(-50%);
-    font-family: "Gotham"; font-weight: 700; font-size: 32px;
+    font-size: 32px;
     letter-spacing: 2px;
     text-indent: 2px;
     color: white;
@@ -54,7 +55,7 @@
 /* Scores */
 .teamScore {
     position: absolute; top: 900px;
-    font-family: "Gotham"; font-weight: 700; font-size: 45px;
+    font-size: 45px;
     letter-spacing: 2px;
     color: white;
 }
@@ -76,3 +77,62 @@
 }
 #purpleMovingScoreBar { right: 50%; }
 #blueMovingScoreBar { left: 50%; }
+
+/* Stats Frame */
+#statsFrameBanner {
+    position: absolute; bottom: 41px; right: 595px;
+    width: 525px; height: 82px;
+    background-image: url(https://assets.ppy.sh/beatmaps/267767/covers/cover.jpg);
+    background-size: cover; background-position: center;
+    border-radius: 15px;
+    opacity: 0.212;
+}
+#statsFrame {
+    position: absolute; bottom: 23px; right: 582px;
+    height: 117px;
+}
+#titleSongArtistContainer {
+    position: absolute; bottom: 78px; left: 813px;
+    text-align: center;
+    font-size: 22px;
+    letter-spacing: 0.95px;
+    width: 500px;
+    text-wrap: nowrap;
+    overflow: hidden;
+    color: white;
+}
+#titleSongArtist {
+    width: max-content;
+    display: inline-block;
+}
+.titleSongArtistWrap { animation: bottomViewMapTitleWrap 12s linear infinite; }
+@keyframes bottomViewMapTitleWrap {
+    0% {transform: translate(0px);}
+    11% {transform: translate(0px);}
+    80% { transform: translate(calc(-100% + 500px)); }
+    100% { transform: translate(calc(-100% + 500px)); }
+}
+
+/* Song Stats Grid */
+#songStatsGrid {
+    position: absolute;  left: 845px; bottom: 43px;
+    font-size: 12px;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    color: white;
+}
+#songStatsGrid > * { width: 125px; }
+
+/* Now Playing Frame */
+#nowPlayingBanner {
+    position: absolute; left: 575px; bottom: 27px;
+    width: 203px; height: 110px;
+    background-image: url("https://assets.ppy.sh/beatmaps/267767/covers/cover.jpg");
+    background-size: cover;
+    background-position: center;
+}
+#nowPlayingFrame {
+    position: absolute; bottom: 13px; left: 560px;
+    width: 232px;
+}
