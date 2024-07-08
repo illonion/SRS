@@ -88,7 +88,6 @@
 #statsFrameBanner {
     position: absolute; bottom: 41px; right: 595px;
     width: 525px; height: 82px;
-    background-image: url(https://assets.ppy.sh/beatmaps/267767/covers/cover.jpg);
     background-size: cover; background-position: center;
     border-radius: 15px;
     opacity: 0.212;
@@ -134,7 +133,6 @@
 #nowPlayingBanner {
     position: absolute; left: 575px; bottom: 27px;
     width: 203px; height: 110px;
-    background-image: url("https://assets.ppy.sh/beatmaps/267767/covers/cover.jpg");
     background-size: cover;
     background-position: center;
 }
