@@ -71,12 +71,18 @@
 /* Moving Score Bar */
 .movingScoreBar {
     position: absolute; top: 901px;
-    width: 0px; height: 14px;
+    width: 400px; height: 14px;
     background-color: white;
-    transition: 500ms ease-in-out;
+    transition: 200ms ease-in-out;
 }
-#purpleMovingScoreBar { right: 50%; }
-#blueMovingScoreBar { left: 50%; }
+#purpleMovingScoreBar { 
+    right: 50%; 
+    border-radius: 15px 0 0 15px;
+}
+#blueMovingScoreBar { 
+    border-radius: 0 15px 15px 0;
+    left: 50%; 
+}
 
 /* Stats Frame */
 #statsFrameBanner {

@@ -25,6 +25,15 @@ const purpleTeamStarsEl = document.getElementById("purpleTeamStars")
 const blueTeamStarsEl = document.getElementById("blueTeamStars")
 let currentBestOf, currentFirstTo, currentPurpleTeamStars, currentBlueTeamStars
 
+// Scores
+const purpleMovingScoreBarEl = document.getElementById("purpleMovingScoreBar")
+const blueMovingScoreBarEl = document.getElementById("blueMovingScoreBar")
+let numberOfClients, currentPurpleTeamScore, currentBlueTeamScore, currentScoreDelta
+const scoreAnimations = {
+    purpleTeamScore: new CountUp("purpleTeamScore", 0, 0, 0, 0.2, { useEasing: true, useGrouping: true, separator: ", ", decimal: "." }),
+    blueTeamScore: new CountUp("blueTeamScore", 0, 0, 0, 0.2, { useEasing: true, useGrouping: true, separator: ", ", decimal: "." }),
+}
+
 socket.onmessage = event => {
     const data = JSON.parse(event.data)
     console.log(data)
@@ -69,4 +78,29 @@ socket.onmessage = event => {
         for (i; i < currentBlueTeamStars; i++) blueTeamStarsEl.append(createStar(true))
         for (i; i < currentFirstTo; i++) blueTeamStarsEl.append(createStar(false))
     }
+
+    // Number of clients
+    if (numberOfClients !== data.tourney.ipcClients.length) numberOfClients = data.tourney.ipcClients.length
+
+    // Set scores
+    currentPurpleTeamScore = 0
+    currentBlueTeamScore = 0
+    currentScoreDelta = 0
+    for (let i = 0; i < numberOfClients; i++) {
+        let currentGameplay = data.tourney.ipcClients[i].gameplay
+        let currentTeamScore = currentGameplay.score * (currentGameplay.mods.str.includes("EZ")? 1.75 : 1)
+        if (data.tourney.ipcClients[i].team === "left") currentPurpleTeamScore += currentTeamScore
+        else currentBlueTeamScore += currentTeamScore
+    }
+    scoreAnimations.purpleTeamScore.update(currentPurpleTeamScore)
+    scoreAnimations.blueTeamScore.update(currentBlueTeamScore)
+    currentScoreDelta = Math.abs(currentPurpleTeamScore - currentBlueTeamScore)
+
+    // Set widths of bar
+    const movingScoreBarDifferencePercent = Math.min(currentScoreDelta / 1500000, 1)
+    let movingScoreBarRectangleWidth = Math.min(Math.pow(movingScoreBarDifferencePercent, 0.5) * 0.8 * 400, 400)
+    let currentScoreBar = (currentPurpleTeamName > currentBlueTeamScore)? purpleMovingScoreBarEl : blueMovingScoreBarEl
+    let otherScoreBar = (currentPurpleTeamName > currentBlueTeamScore)? blueMovingScoreBarEl : purpleMovingScoreBarEl
+    currentScoreBar.style.width = movingScoreBarRectangleWidth
+    otherScoreBar.style.width = "0px"
 }
