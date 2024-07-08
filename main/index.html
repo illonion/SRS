@@ -29,21 +29,30 @@
         <div class="movingScoreBar" id="purpleMovingScoreBar"></div>
         <div class="movingScoreBar" id="blueMovingScoreBar"></div>
     
-        <!-- Stats -->
-        <img id="statsFrame" src="static/statsFrame.png">
-        <div id="statsFrameBanner"></div>
-        <div id="titleSongArtistContainer"><span id="titleSongArtist">TITLE SONG - ARTIST [DIFFICULTY]</span></div>
-        <div id="songStatsGrid">
-            <div id="songStatsSR">SR: <span id="songStatsSRNumber"></span></div>
-            <div id="songStatsCS">CS: <span id="songStatsCSNumber"></span></div>
-            <div id="songStatsBPM">BPM: <span id="songStatsBPMNumber"></span></div>
-            <div id="songStatsAR">AR: <span id="songStatsARNumber"></span></div>
-            <div id="songStatsHP">HP: <span id="songStatsHPNumber"></span></div>
-            <div id="songStatsLENGTH">LENGTH: <span id="songStatsLENGTHNumber"></span></div>
+        <div id="nowPlayingDetailsContainer">
+            <!-- Stats -->
+            <img id="statsFrame" src="static/statsFrame.png">
+            <div id="statsFrameBanner"></div>
+            <div id="titleSongArtistContainer"><span id="titleSongArtist">TITLE SONG - ARTIST [DIFFICULTY]</span></div>
+            <div id="songStatsGrid">
+                <div id="songStatsSR">SR: <span id="songStatsSRNumber"></span></div>
+                <div id="songStatsCS">CS: <span id="songStatsCSNumber"></span></div>
+                <div id="songStatsBPM">BPM: <span id="songStatsBPMNumber"></span></div>
+                <div id="songStatsAR">AR: <span id="songStatsARNumber"></span></div>
+                <div id="songStatsHP">HP: <span id="songStatsHPNumber"></span></div>
+                <div id="songStatsLENGTH">LENGTH: <span id="songStatsLENGTHNumber"></span></div>
+            </div>
+            <!-- Now Playing -->
+            <div id="nowPlayingBanner"></div>
+            <img id="nowPlayingFrame" src="static/nowPlayingFrame.png">
         </div>
-        <!-- Now Playing -->
-        <div id="nowPlayingBanner"></div>
-        <img id="nowPlayingFrame" src="static/nowPlayingFrame.png">
+
+        <!-- Chat Display -->
+        <div id="chatDisplayContainer">
+            <img id="chatDisplayFrame" src="static/nowPlayingFrame.png">
+            <div id="chatDisplay"></div>
+        </div>
+
     </div>
     <script src="index.js"></script>
 </body>

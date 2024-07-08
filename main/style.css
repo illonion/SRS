@@ -84,6 +84,12 @@
     left: 50%; 
 }
 
+/* Now Playing Details Container */
+#nowPlayingDetailsContainer, #chatDisplayContainer {
+    transition: 500ms ease-in-out;
+    opacity: 1;
+}
+
 /* Stats Frame */
 #statsFrameBanner {
     position: absolute; bottom: 41px; right: 595px;
