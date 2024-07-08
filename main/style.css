@@ -1,0 +1,42 @@
+/* Fonts */
+@font-face {
+    font-family: "Gotham";
+    font-weight: 700;
+    src: url("../fonts/Gotham-Bold.otf")
+}
+
+/* Whole Page */
+#main {
+    position: absolute; left: 0; top: 0;
+    width: 1920px; height: 1080px;
+    background-image: url("static/background.png");
+    background-size: cover;
+}
+
+/* Team Names */
+.teamName {
+    position: absolute; top: 36px;
+    font-family: "Gotham"; font-weight: 700; font-size: 50px;
+    color: white;
+    letter-spacing: 2.5px;
+}
+#purpleTeamName { left: 53px; }
+#blueTeamName { right: 53px; }
+
+/* Team Stars */
+.teamStars {
+    position: absolute; top: 108px;
+    display: flex;
+}
+#purpleTeamStars { left: 42px; }
+#blueTeamStars {
+    right: 42px;
+    flex-direction: row-reverse;
+}
+.teamStar {
+    width: 26px; height: 26px;
+    margin: 0 12.7px;
+    border-radius: 30px;
+    border: 2px solid white;
+}
+.teamStarFill { background-color: white; }
