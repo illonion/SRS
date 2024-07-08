@@ -50,3 +50,19 @@
     text-indent: 2px;
     color: white;
 }
+
+/* Scores */
+.teamScore {
+    position: absolute; top: 900px;
+    font-family: "Gotham"; font-weight: 700; font-size: 45px;
+    letter-spacing: 2px;
+    color: white;
+}
+#purpleTeamScore {
+    left: 198px; 
+    transform: translateX(-50%);
+}
+#blueTeamScore {
+    right: 175px;
+    transform: translateX(50%);
+}
