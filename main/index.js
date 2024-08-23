@@ -96,7 +96,7 @@ socket.onmessage = event => {
         // Create star
         function createStar(starImage) {
             const newStar = document.createElement("img")
-            newStar.setAttribute("src", `static/star-${starImage}.png`)
+            newStar.setAttribute("src", `../_shared/images/star-${starImage}.png`)
             return newStar
         }
 

@@ -14,3 +14,32 @@
     font-family: "Gotham"; font-weight: 700; 
     background-color: #c7ecef;
 }
+
+/* Team Names */
+.teamName {
+    position: absolute; top: 45px;
+    font-size: 42px;
+    color: white;
+    letter-spacing: 2px;
+}
+#purpleTeamName { left: 34px; } 
+#blueTeamName { right: 34px; }
+
+/* Team Stars */
+.teamStars {
+    position: absolute; top: 111px;
+    display: flex;
+    transition: 500ms ease-in-out;
+}
+#purpleTeamStars { left: 27px; }
+.teamStars > * {
+    margin-left: -16px;
+    height: 61px;
+}
+.teamStars > *:nth-child(even) {
+    margin-top: 17px;
+}
+#blueTeamStars {
+    right: 27px;
+    flex-direction: row-reverse;
+}
