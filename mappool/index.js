@@ -1,11 +1,21 @@
 // Import mappool
 const roundNameEl = document.getElementById("roundName")
+let roundName
 let allBeatmaps
+let numberOfBans = 2
+let numberOfPicks = 6
 async function getMappool() {
     const response = await fetch("http://127.0.0.1:24050/SRS/_data/beatmaps.json")
     const mappool = await response.json()
     allBeatmaps = mappool.beatmaps
-    roundNameEl.innerText = mappool.roundName.toLowerCase()
+    roundName = mappool.roundName.toLowerCase()
+    roundNameEl.innerText = roundName
+
+    // Set number of picks
+    if (roundName === "quarterfinals" || roundName === "semifinals") numberOfPicks = 5
+
+    // Generate number of cards
+
 }
 getMappool()
 
