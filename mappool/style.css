@@ -1,0 +1,16 @@
+/* Fonts */
+@font-face {
+    font-family: "Gotham";
+    font-weight: 700;
+    src: url("../fonts/Gotham-Bold.otf")
+}
+
+/* Whole Page */
+#main {
+    position: absolute; left: 0; top: 0;
+    width: 1920px; height: 1080px;
+    background-image: url("static/background.png");
+    background-size: cover;
+    font-family: "Gotham"; font-weight: 700; 
+    background-color: #c7ecef;
+}
