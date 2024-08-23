@@ -54,6 +54,24 @@
         <div id="chatDisplay"></div>
     </div>
 
+    <!-- Nav Bar -->
+    <section id="navbar">
+        <section id="nextPickerSection">
+            <h1>Next Action:</h1>
+            <div id="nextPickerText">red pick</div>
+            <div id="nextPickerButtonContainer">
+                <button class="navbarFullSizeButtons" onclick="setNextAction('red', 'ban')">Red Ban</button>
+                <button class="navbarFullSizeButtons" onclick="setNextAction('blue', 'ban')">Blue Ban</button>
+                <button class="navbarFullSizeButtons" onclick="setNextAction('red', 'pick')">Red Pick</button>
+                <button class="navbarFullSizeButtons" onclick="setNextAction('blue', 'pick')">Blue Pick</button>
+                <button class="navbarFullSizeButtons" onclick="toggleAutopick()">Toggle Autopick: <span id="toggleAutopickText">OFF</span></button>
+            </div>
+        </section>
+        <section id="mapSelection">
+            <div id="allMapsButtonContainer"></div>
+        </section>
+    </section>
+
     <script src="index.js"></script>
 </body>
 </html>

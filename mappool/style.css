@@ -127,7 +127,65 @@
     position: absolute; left: 13px; top: 12px;
     width: 156px; height: 104px;
     background-size: cover;
-    background-image: url(https://assets.ppy.sh/beatmaps/292301/covers/cover.jpg);
     background-position: center;
     border-radius: 9px;
+}
+
+/* Nav Bar */
+#navbar {
+    position: absolute; left: 1920px; top: 0;
+    width: 250px; height: 1080px;
+    background-color: #c7ecef;
+    font-family: "Gotham"; font-weight: 700; 
+}
+/* Nav Bar Helpers */
+h1 {
+    width: inherit;
+    margin-left: 22px;
+    margin-bottom: 10px;
+}
+.navbarFullSizeButtons {
+    width: 200px; height: 40px;
+    margin-bottom: 10px;
+    font-family: "Gotham"; font-weight: 700; 
+    background-color: transparent;
+    border-radius: 20px;
+}
+.navbarFullSizeButtons:active {
+    background-color: black;
+    color: white;
+}
+/* Next Picker Section */
+#nextPickerSection {
+    padding-bottom: 20px;
+    border-bottom: 2px solid black;
+}
+#nextPickerText {
+    margin-left: 20px;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+#nextPickerButtonContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+/* Maps Section */
+#allMapsButtonContainer {
+    margin-top: 20px;
+    display: flex;
+    width: inherit;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.mapsButton {
+    width: 100px; height: 35px;
+    font-family: "Gotham"; font-weight: 700; 
+    margin: 5px;
+    border-radius: 20px;
+    background-color: transparent;
+}
+.mapsButton:Active {
+    background-color: black;
+    color: white;
 }
