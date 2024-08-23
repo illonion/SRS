@@ -3,7 +3,11 @@ const roundNameEl = document.getElementById("roundName")
 let roundName
 let allBeatmaps
 let numberOfBans = 2
-let numberOfPicks = 6
+let numberOfPicks = 12
+
+const purpleTeamPickCardsEl = document.getElementById("purpleTeamPickCards")
+const blueTeamPickCardsEl = document.getElementById("blueTeamPickCards")
+
 async function getMappool() {
     const response = await fetch("http://127.0.0.1:24050/SRS/_data/beatmaps.json")
     const mappool = await response.json()
@@ -12,10 +16,35 @@ async function getMappool() {
     roundNameEl.innerText = roundName
 
     // Set number of picks
-    if (roundName === "quarterfinals" || roundName === "semifinals") numberOfPicks = 5
+    if (roundName === "quarterfinals" || roundName === "semifinals") numberOfPicks = 10
 
     // Generate number of cards
+    for (let i = 0; i < numberOfPicks; i++) {
+        const pickCard = document.createElement("div")
+        pickCard.classList.add("pickCard")
 
+        const pickCardBackgroundImage = document.createElement("img")
+        pickCardBackgroundImage.setAttribute("src", `static/${(i % 2 === 0)? "purple" : "blue" }-pick-card.png` )
+
+        const pickCardImageContainer = document.createElement("div")
+        pickCardImageContainer.classList.add("pickCardImageContainer")
+        const pickCardImage = document.createElement("div")
+        pickCardImage.classList.add("pickCardImage")
+        pickCardImageContainer.append(pickCardImage)
+
+        const pickCardWinnerContainer = document.createElement("div")
+        pickCardWinnerContainer.classList.add("pickCardWinnerContainer")
+        const pickCardWinnerImage = document.createElement("div")
+        pickCardWinnerImage.classList.add("pickCardWinnerImage")
+        pickCardWinnerContainer.append(pickCardWinnerImage)
+
+        const pickCardMod = document.createElement("div")
+        pickCardMod.classList.add("pickCardMod")
+
+        pickCard.append(pickCardBackgroundImage, pickCardImageContainer, pickCardWinnerContainer, pickCardMod)
+        if (i % 2 === 0) purpleTeamPickCardsEl.append(pickCard)
+        else blueTeamPickCardsEl.append(pickCard)
+    }
 }
 getMappool()
 
