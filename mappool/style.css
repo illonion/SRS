@@ -110,3 +110,24 @@
 }
 .pickCardModPurple { background-color: rgb(187, 164, 201); }
 .pickCardModBlue { background-color: rgb(150, 221, 228); }
+
+/* Ban Cards */
+.teamBanCards {
+    position: absolute; top: 588px;
+    display: flex;
+    flex-direction: column;
+}
+#purpleTeamBanCards { left: 30px;  }
+#blueTeamBanCards { right: 30px; }
+.banCard {
+    position: relative;
+    margin-bottom: 13px;
+}
+.banCardBackgroundImage {
+    position: absolute; left: 13px; top: 12px;
+    width: 156px; height: 104px;
+    background-size: cover;
+    background-image: url(https://assets.ppy.sh/beatmaps/292301/covers/cover.jpg);
+    background-position: center;
+    border-radius: 9px;
+}
