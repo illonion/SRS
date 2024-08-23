@@ -1,0 +1,36 @@
+/* Chat Display Frame */
+#chatDisplay {
+    position: absolute; left: 50%; bottom: 10px;
+    transform: translateX(-50%);
+    width: 805px; height: 154px;
+    border-radius: 26px;
+    background-color: rgba(0,0,0,0.4);
+    transition: 500ms ease-in-out;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+#chatDisplay::-webkit-scrollbar { display: none; }
+.chatMessageContainer { 
+    margin: 2px 0;
+    display: flex; 
+}
+.chatDisplayTime {
+    width: 77px;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.51px;
+    text-indent: 0.255px;
+    color: white;
+}
+.chatDisplayWholeMessage {
+    width: 669px;
+    margin-left: 24px;
+    letter-spacing: 0.51px;
+    text-indent: 0.255px;
+    color: white;
+}
+.chatDisplayName { font-weight: 700; }
+.left { color: #9072a0 }
+.right { color: rgb(80, 176, 181) }
+.unknown { color: rgb(169, 241, 162) }
+.bot { color: rgb(239, 128, 107) }

@@ -43,6 +43,7 @@ const scoreAnimations = {
 }
 
 // Now Playing Information
+const nowPlayingDetailsContainerEl = document.getElementById("nowPlayingDetailsContainer")
 const nowPlayingBannerEl = document.getElementById("nowPlayingBanner")
 const statsFrameBannerEl = document.getElementById("statsFrameBanner")
 const titleSongArtistEl = document.getElementById("titleSongArtist")
@@ -131,9 +132,11 @@ socket.onmessage = event => {
         if (scoreVisible) {
             scoreSectionEl.style.opacity = 1
             chatDisplayEl.style.opacity = 0
+            nowPlayingDetailsContainerEl.style.opacity = 1
         } else {
             scoreSectionEl.style.opacity = 0
             chatDisplayEl.style.opacity = 1
+            nowPlayingDetailsContainerEl.style.opacity = 0
         }
     }
 
