@@ -44,16 +44,6 @@
     flex-direction: row-reverse;
 }
 
-/* Round Name */
-#roundName {
-    position: absolute; left: 972px; top: 141px;
-    transform: translateX(-50%);
-    font-size: 32px;
-    letter-spacing: 2px;
-    text-indent: 2px;
-    color: white;
-}
-
 /* Score Section */
 #scoreSection {
     transition: 500ms ease-in-out;
