@@ -71,6 +71,10 @@ let currentBestOf, currentFirstTo, currentPurpleTeamStars, currentBlueTeamStars
 // Star visible
 let starVisible
 
+// Chat Display
+const chatDisplayEl = document.getElementById("chatDisplay")
+let chatLength = 0
+
 socket.onmessage = event => {
     const data = JSON.parse(event.data)
     console.log(data)
@@ -126,5 +130,48 @@ socket.onmessage = event => {
             purpleTeamStarsEl.style.opacity = 0
             blueTeamStarsEl.style.opacity = 0
         }
+    }
+
+    // Chat Stuff
+    // This is also mostly taken from Victim Crasher: https://github.com/VictimCrasher/static/tree/master/WaveTournament
+    if (chatLength !== data.tourney.manager.chat.length) {
+        (chatLength === 0 || chatLength > data.tourney.manager.chat.length) ? (chatDisplayEl.innerHTML = "", chatLength = 0) : null;
+        const fragment = document.createDocumentFragment();
+
+        for (let i = chatLength; i < data.tourney.manager.chat.length; i++) {
+            const chatColour = data.tourney.manager.chat[i].team;
+
+            // Chat message container
+            const chatMessageContainer = document.createElement("div")
+            chatMessageContainer.classList.add("chatMessageContainer")
+
+            // Time
+            const chatDisplayTime = document.createElement("div")
+            chatDisplayTime.classList.add("chatDisplayTime")
+            chatDisplayTime.innerText = data.tourney.manager.chat[i].time
+
+            // Whole Message
+            const chatDisplayWholeMessage = document.createElement("div")
+            chatDisplayWholeMessage.classList.add("chatDisplayWholeMessage")  
+            
+            // Name
+            const chatDisplayName = document.createElement("span")
+            chatDisplayName.classList.add("chatDisplayName")
+            chatDisplayName.classList.add(chatColour)
+            chatDisplayName.innerText = data.tourney.manager.chat[i].name + ": ";
+
+            // Message
+            const chatDisplayMessage = document.createElement("span")
+            chatDisplayMessage.classList.add("chatDisplayMessage")
+            chatDisplayMessage.innerText = data.tourney.manager.chat[i].messageBody
+
+            chatDisplayWholeMessage.append(chatDisplayName, chatDisplayMessage)
+            chatMessageContainer.append(chatDisplayTime, chatDisplayWholeMessage)
+            fragment.append(chatMessageContainer)
+        }
+
+        chatDisplayEl.append(fragment)
+        chatLen = data.tourney.manager.chat.length;
+        chatDisplayEl.scrollTop = chatDisplayEl.scrollHeight;
     }
 }
