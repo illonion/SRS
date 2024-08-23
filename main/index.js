@@ -29,7 +29,11 @@ const purpleTeamStarsEl = document.getElementById("purpleTeamStars")
 const blueTeamStarsEl = document.getElementById("blueTeamStars")
 let currentBestOf, currentFirstTo, currentPurpleTeamStars, currentBlueTeamStars
 
+// Star visible
+let starVisible
+
 // Scores
+const scoreSectionEl = document.getElementById("scoreSection")
 const purpleMovingScoreBarEl = document.getElementById("purpleMovingScoreBar")
 const blueMovingScoreBarEl = document.getElementById("blueMovingScoreBar")
 let numberOfClients, currentPurpleTeamScore, currentBlueTeamScore, currentScoreDelta
@@ -52,6 +56,13 @@ const songStatsHPNumberEl = document.getElementById("songStatsHPNumber")
 const songStatsLENGTHNumberEl = document.getElementById("songStatsLENGTHNumber")
 let currentSongStatsSR, currentSongStatsCS, currentSongStatsAR, currentSongStatsHP, currentSongStatsLENGTH
 let currentSongStatsBPMCommon, currentSongStatsBPMMin, currentSongStatsBPMMax
+
+// Chat Display
+const chatDisplayEl = document.getElementById("chatDisplay")
+let chatLength = 0
+
+// Score visibility
+let scoreVisible
 
 socket.onmessage = event => {
     const data = JSON.parse(event.data)
@@ -83,45 +94,72 @@ socket.onmessage = event => {
         blueTeamStarsEl.innerHTML = ""
 
         // Create star
-        function createStar(starFill) {
-            const newStar = document.createElement("div")
-            newStar.classList.add("teamStar")
-            if (starFill) newStar.classList.add("teamStarFill")
+        function createStar(starImage) {
+            const newStar = document.createElement("img")
+            newStar.setAttribute("src", `static/star-${starImage}.png`)
             return newStar
         }
 
         let i = 0
-        for (i; i < currentPurpleTeamStars; i++) purpleTeamStarsEl.append(createStar(true))
-        for (i; i < currentFirstTo; i++) purpleTeamStarsEl.append(createStar(false))
+        for (i; i < currentPurpleTeamStars; i++) purpleTeamStarsEl.append(createStar("purple"))
+        for (i; i < currentFirstTo; i++) purpleTeamStarsEl.append(createStar("none"))
         i = 0
-        for (i; i < currentBlueTeamStars; i++) blueTeamStarsEl.append(createStar(true))
-        for (i; i < currentFirstTo; i++) blueTeamStarsEl.append(createStar(false))
+        for (i; i < currentBlueTeamStars; i++) blueTeamStarsEl.append(createStar("blue"))
+        for (i; i < currentFirstTo; i++) blueTeamStarsEl.append(createStar("none"))
+    }
+
+    // Star visible
+    if (starVisible !== data.tourney.manager.bools.starVisible) {
+        starVisible = data.tourney.manager.bools.starVisible
+
+        if (starVisible) {
+            purpleTeamStarsEl.style.opacity = 1
+            blueTeamStarsEl.style.opacity = 1
+        } else {
+            purpleTeamStarsEl.style.opacity = 0
+            blueTeamStarsEl.style.opacity = 0
+        }
     }
 
     // Number of clients
     if (numberOfClients !== data.tourney.ipcClients.length) numberOfClients = data.tourney.ipcClients.length
 
-    // Set scores
-    currentPurpleTeamScore = 0
-    currentBlueTeamScore = 0
-    currentScoreDelta = 0
-    for (let i = 0; i < numberOfClients; i++) {
-        let currentGameplay = data.tourney.ipcClients[i].gameplay
-        let currentTeamScore = currentGameplay.score * (currentGameplay.mods.str.includes("EZ")? 1.75 : 1)
-        if (data.tourney.ipcClients[i].team === "left") currentPurpleTeamScore += currentTeamScore
-        else currentBlueTeamScore += currentTeamScore
-    }
-    scoreAnimations.purpleTeamScore.update(currentPurpleTeamScore)
-    scoreAnimations.blueTeamScore.update(currentBlueTeamScore)
-    currentScoreDelta = Math.abs(currentPurpleTeamScore - currentBlueTeamScore)
+    // Set score visibility
+    if (scoreVisible !== data.tourney.manager.bools.scoreVisible) {
+        scoreVisible = data.tourney.manager.bools.scoreVisible
 
-    // Set widths of bar
-    const movingScoreBarDifferencePercent = Math.min(currentScoreDelta / 1500000, 1)
-    let movingScoreBarRectangleWidth = Math.min(Math.pow(movingScoreBarDifferencePercent, 0.5) * 0.8 * 400, 400)
-    let currentScoreBar = (currentPurpleTeamName > currentBlueTeamScore)? purpleMovingScoreBarEl : blueMovingScoreBarEl
-    let otherScoreBar = (currentPurpleTeamName > currentBlueTeamScore)? blueMovingScoreBarEl : purpleMovingScoreBarEl
-    currentScoreBar.style.width = movingScoreBarRectangleWidth
-    otherScoreBar.style.width = "0px"
+        if (scoreVisible) {
+            scoreSectionEl.style.opacity = 1
+            chatDisplayEl.style.opacity = 0
+        } else {
+            scoreSectionEl.style.opacity = 0
+            chatDisplayEl.style.opacity = 1
+        }
+    }
+
+    // Set scores
+    if (scoreVisible) {
+        currentPurpleTeamScore = 0
+        currentBlueTeamScore = 0
+        currentScoreDelta = 0
+        for (let i = 0; i < numberOfClients; i++) {
+            let currentGameplay = data.tourney.ipcClients[i].gameplay
+            let currentTeamScore = currentGameplay.score * (currentGameplay.mods.str.includes("EZ")? 1.75 : 1)
+            if (data.tourney.ipcClients[i].team === "left") currentPurpleTeamScore += currentTeamScore
+            else currentBlueTeamScore += currentTeamScore
+        }
+        scoreAnimations.purpleTeamScore.update(currentPurpleTeamScore)
+        scoreAnimations.blueTeamScore.update(currentBlueTeamScore)
+        currentScoreDelta = Math.abs(currentPurpleTeamScore - currentBlueTeamScore)
+    
+        // Set widths of bar
+        const movingScoreBarDifferencePercent = Math.min(currentScoreDelta / 1500000, 1)
+        let movingScoreBarRectangleWidth = Math.min(Math.pow(movingScoreBarDifferencePercent, 0.5) * 0.8 * 400, 400)
+        let currentScoreBar = (currentPurpleTeamName > currentBlueTeamScore)? purpleMovingScoreBarEl : blueMovingScoreBarEl
+        let otherScoreBar = (currentPurpleTeamName > currentBlueTeamScore)? blueMovingScoreBarEl : purpleMovingScoreBarEl
+        currentScoreBar.style.width = movingScoreBarRectangleWidth
+        otherScoreBar.style.width = "0px"
+    }
 
     // Now Playing
     if ((currentMapId !== data.menu.bm.id || currentMd5 !== data.menu.bm.md5) && allBeatmaps) {
@@ -192,6 +230,49 @@ socket.onmessage = event => {
             songStatsLENGTHNumberEl.innerText = displayTime(Math.round(currentSongStatsLENGTH))
         }
     } 
+
+    // Chat Stuff
+    // This is also mostly taken from Victim Crasher: https://github.com/VictimCrasher/static/tree/master/WaveTournament
+    if (chatLength !== data.tourney.manager.chat.length && !scoreVisible) {
+        (chatLength === 0 || chatLength > data.tourney.manager.chat.length) ? (chatDisplayEl.innerHTML = "", chatLength = 0) : null;
+        const fragment = document.createDocumentFragment();
+
+        for (let i = chatLength; i < data.tourney.manager.chat.length; i++) {
+            const chatColour = data.tourney.manager.chat[i].team;
+
+            // Chat message container
+            const chatMessageContainer = document.createElement("div")
+            chatMessageContainer.classList.add("chatMessageContainer")
+
+            // Time
+            const chatDisplayTime = document.createElement("div")
+            chatDisplayTime.classList.add("chatDisplayTime")
+            chatDisplayTime.innerText = data.tourney.manager.chat[i].time
+
+            // Whole Message
+            const chatDisplayWholeMessage = document.createElement("div")
+            chatDisplayWholeMessage.classList.add("chatDisplayWholeMessage")  
+            
+            // Name
+            const chatDisplayName = document.createElement("span")
+            chatDisplayName.classList.add("chatDisplayName")
+            chatDisplayName.classList.add(chatColour)
+            chatDisplayName.innerText = data.tourney.manager.chat[i].name + ": ";
+
+            // Message
+            const chatDisplayMessage = document.createElement("span")
+            chatDisplayMessage.classList.add("chatDisplayMessage")
+            chatDisplayMessage.innerText = data.tourney.manager.chat[i].messageBody
+
+            chatDisplayWholeMessage.append(chatDisplayName, chatDisplayMessage)
+            chatMessageContainer.append(chatDisplayTime, chatDisplayWholeMessage)
+            fragment.append(chatMessageContainer)
+        }
+
+        chatDisplayEl.append(fragment)
+        chatLen = data.tourney.manager.chat.length;
+        chatDisplayEl.scrollTop = chatDisplayEl.scrollHeight;
+    }
 }
 
 function displayTime(seconds) {

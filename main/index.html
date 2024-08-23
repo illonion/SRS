@@ -15,19 +15,38 @@
         <div class="teamName" id="blueTeamName">TEAM NAME HERE</div>
 
         <!-- Stars -->
-        <div class="teamStars" id="purpleTeamStars"></div>
-        <div class="teamStars" id="blueTeamStars"></div>
+        <div class="teamStars" id="purpleTeamStars">
+            <img src="static/star-purple.png">
+            <img src="static/star-purple.png">
+            <img src="static/star-purple.png">
+            <img src="static/star-purple.png">
+            <img src="static/star-purple.png">
+            <img src="static/star-purple.png">
+            <img src="static/star-none.png">
+        </div>
+        <div class="teamStars" id="blueTeamStars">
+            <img src="static/star-blue.png">
+            <img src="static/star-blue.png">
+            <img src="static/star-blue.png">
+            <img src="static/star-blue.png">
+            <img src="static/star-blue.png">
+            <img src="static/star-blue.png">
+            <img src="static/star-blue.png">
+        </div>
 
         <!-- Round name -->
         <div id="roundName">quarterfinals</div>
 
-        <!-- Scores -->
-        <div class="teamScore" id="purpleTeamScore">9 999 999</div>
-        <div class="teamScore" id="blueTeamScore">9 999 999</div>
+        <!-- Score Section -->
+        <section id="scoreSection">
+            <!-- Scores -->
+            <div class="teamScore" id="purpleTeamScore">9 999 999</div>
+            <div class="teamScore" id="blueTeamScore">9 999 999</div>
 
-        <!-- Moving Score Bar -->
-        <div class="movingScoreBar" id="purpleMovingScoreBar"></div>
-        <div class="movingScoreBar" id="blueMovingScoreBar"></div>
+            <!-- Moving Score Bar -->
+            <div class="movingScoreBar" id="purpleMovingScoreBar"></div>
+            <div class="movingScoreBar" id="blueMovingScoreBar"></div>
+        </section>
     
         <div id="nowPlayingDetailsContainer">
             <!-- Stats -->
@@ -48,11 +67,7 @@
         </div>
 
         <!-- Chat Display -->
-        <div id="chatDisplayContainer">
-            <img id="chatDisplayFrame" src="static/nowPlayingFrame.png">
-            <div id="chatDisplay"></div>
-        </div>
-
+        <div id="chatDisplay"></div>
     </div>
     <script src="index.js"></script>
 </body>
