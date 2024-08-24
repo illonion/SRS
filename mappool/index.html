@@ -56,19 +56,35 @@
 
     <!-- Nav Bar -->
     <section id="navbar">
-        <section id="nextPickerSection">
-            <h1>Next Action:</h1>
-            <div id="nextPickerText">red pick</div>
-            <div id="nextPickerButtonContainer">
-                <button class="navbarFullSizeButtons" onclick="setNextAction('red', 'ban')">Red Ban</button>
-                <button class="navbarFullSizeButtons" onclick="setNextAction('blue', 'ban')">Blue Ban</button>
-                <button class="navbarFullSizeButtons" onclick="setNextAction('red', 'pick')">Red Pick</button>
-                <button class="navbarFullSizeButtons" onclick="setNextAction('blue', 'pick')">Blue Pick</button>
-                <button class="navbarFullSizeButtons" onclick="toggleAutopick()">Toggle Autopick: <span id="toggleAutopickText">OFF</span></button>
-            </div>
+        <section id="navbarSection1">
+            <section id="nextPickerSection">
+                <h1>Next Action:</h1>
+                <div id="nextPickerText">red pick</div>
+                <div id="nextPickerButtonContainer">
+                    <button class="navbarFullSizeButtons" onclick="setNextAction('red', 'ban')">Red Ban</button>
+                    <button class="navbarFullSizeButtons" onclick="setNextAction('blue', 'ban')">Blue Ban</button>
+                    <button class="navbarFullSizeButtons" onclick="setNextAction('red', 'pick')">Red Pick</button>
+                    <button class="navbarFullSizeButtons" onclick="setNextAction('blue', 'pick')">Blue Pick</button>
+                    <button class="navbarFullSizeButtons" onclick="toggleAutopick()">Toggle Autopick: <span id="toggleAutopickText">OFF</span></button>
+                </div>
+            </section>
+            <section id="mapSelection">
+                <div id="allMapsButtonContainer"></div>
+            </section>
         </section>
-        <section id="mapSelection">
-            <div id="allMapsButtonContainer"></div>
+        <div id="divider1"></div>
+        <section id="navbarSection2">
+            <div id="pickBanManagement">
+                <h1>Pick / Ban / Winner Management</h1>
+                <select class="pickBanManagementSelect" size="6" id="pickBanManagementSelect">
+                    <option value="setBan">Set Ban</option>
+                    <option value="removeBan">Remove Ban</option>
+                    <option value="setPick">Set Pick</option>
+                    <option value="removePick">Remove Pick</option>
+                    <option value="setWinner">Set Winner</option>
+                    <option value="removeWinner">Remove Winner</option>
+                </select>
+            </div>
         </section>
     </section>
 

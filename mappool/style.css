@@ -134,9 +134,23 @@
 /* Nav Bar */
 #navbar {
     position: absolute; left: 1920px; top: 0;
-    width: 250px; height: 1080px;
+    width: 500px; height: 1080px;
     background-color: #c7ecef;
     font-family: "Gotham"; font-weight: 700; 
+}
+/* Section */
+#navbarSection1 {
+    width: 250px;
+}
+#navbarSection2 {
+    position: absolute; left: 250px; top: 0;
+    width: 250px; height: 1080px;
+}
+/* Divider */
+#divider1 {
+    position: absolute; left: 249px; top: 0;
+    width: 2px; height: 1080px;
+    background-color: black;
 }
 /* Nav Bar Helpers */
 h1 {
@@ -188,4 +202,43 @@ h1 {
 .mapsButton:Active {
     background-color: black;
     color: white;
+}
+
+.pickBanManagementSelect {
+    width: 200px;
+    margin-top: 5px;
+    margin-left: 25px;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    font-family: "Gotham"; font-weight: 700; font-size: 16px;
+}
+.pickBanManagementSelect option { font-family: "Gotham"; font-weight: 700; font-size: 16px; }
+.whichMapButtonContainer, .whosePickButtonContainer {
+    width: 250px;
+    margin-top: 5px;
+    margin-left: 0;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.whichMapButton, .whosePickButton {
+    width: 104.5px;
+    margin-bottom: 5px;
+    font-family: "Gotham";
+    font-weight: 700;
+    font-size: 16px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    margin: 5px 10px;
+}
+#applyChangesButton {
+    margin-top: 15px;
+    margin-left: 25px;
+    width: 200px;
+}
+.pickBanManagementSelect::-webkit-scrollbar {
+    display: none;
 }
