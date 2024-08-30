@@ -210,29 +210,28 @@ socket.onmessage = event => {
     // IPC State
     if (ipcState !== data.tourney.manager.ipcState) {
         ipcState = data.tourney.manager.ipcState
-        if (ipcState === 4) {
-            if (!setWinnerAlready) {
-                setWinnerAlready = true
-                let currentRedScore = 0
-                let currentBlueScore = 0
-                
-                for (let i = 0; i < data.tourney.ipcClients.length; i++) {
-                    let currentScore = 0
-                    currentScore = data.tourney.ipcClients[i].gameplay.score * (data.tourney.ipcClients[i].gameplay.mods.str.includes("EZ")? 1.75 : 1)
-                    if (data.tourney.ipcClients[i].team === "left") currentRedScore += currentScore
-                    else currentBlueScore += currentScore
-                }
+        if (ipcState !== 4) setWinnerAlready = false
+    }
 
-                if (currentRedScore > currentBlueScore) {
-                    currentPickTile.children[2].classList.add("pickCardWinnerPurple")
-                    currentPickTile.children[2].children[0].setAttribute("src", "static/popsicle-purple.png")
-                } else if (currentRedScore < currentBlueScore) {
-                    currentPickTile.children[2].classList.add("pickCardWinnerBlue")
-                    currentPickTile.children[2].children[0].setAttribute("src", "static/popsicle-blue.png")
-                }
-            }
-        } else {
-            setWinnerAlready = false
+    // Setting winner
+    if (ipcState === 4 && !setWinnerAlready) {
+        setWinnerAlready = true
+        let currentRedScore = 0
+        let currentBlueScore = 0
+        for (let i = 0; i < data.tourney.ipcClients.length; i++) {
+            let currentScore = 0
+            currentScore = data.tourney.ipcClients[i].gameplay.score * (data.tourney.ipcClients[i].gameplay.mods.str.includes("EZ")? 1.75 : 1)
+            if (data.tourney.ipcClients[i].team === "left") currentRedScore += currentScore
+            else currentBlueScore += currentScore
+        }
+        if (currentRedScore > currentBlueScore) {
+            currentPickTile.children[2].classList.add("pickCardWinnerPurple")
+            currentPickTile.children[2].children[0].setAttribute("src", "static/popsicle-purple.png")
+            currentPickTile.children[2].style.opacity = 1
+        } else if (currentRedScore < currentBlueScore) {
+            currentPickTile.children[2].classList.add("pickCardWinnerBlue")
+            currentPickTile.children[2].children[0].setAttribute("src", "static/popsicle-blue.png")
+            currentPickTile.children[2].style.opacity = 1
         }
     }
 }
