@@ -1,0 +1,45 @@
+/* Gotham Bold Font */
+@font-face {
+    font-family: "Gotham";
+    font-weight: 700;
+    src: url("../fonts/Gotham-Bold.otf")
+}
+
+#main {
+    position: absolute; left: 0; top: 0;
+    width: 1920px; height: 1080px;
+    background-image: url("static/background.png");
+    background-size: cover;
+    font-family: "Gotham";
+    font-weight: 700;
+    color: white;
+    letter-spacing: 3px;
+    text-indent: 1.5px;
+    font-size: 50px;
+}
+
+/* Team Name */
+#teamName {
+    position: absolute; left: 50%; top: 462px;
+    transform: translateX(-50%);
+    width: 710px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Team Players */
+#teamDetails {
+    position: absolute; left: 50%; top: 556px;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 710px;
+}
+.teamPlayer {
+    width: calc(710px / 2);
+    text-align: center;
+    margin-bottom: -8px;
+}
