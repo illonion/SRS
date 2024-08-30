@@ -107,6 +107,15 @@ socket.onmessage = event => {
         i = 0
         for (i; i < currentBlueTeamStars; i++) blueTeamStarsEl.append(createStar("blue"))
         for (i; i < currentFirstTo; i++) blueTeamStarsEl.append(createStar("none"))
+
+        // Set winner
+        if (currentPurpleTeamStars === currentFirstTo) {
+            document.cookie = `winnerTeamName=${currentPurpleTeamName}; path=/`
+            document.cookie = `winnerTeamColour=purple; path=/`
+        } else if (currentBlueTeamStars === currentFirstTo) {
+            document.cookie = `winnerTeamName=${currentBlueTeamName}; path=/`
+            document.cookie = `winnerTeamColour=blue; path=/`
+        }
     }
 
     // Star visible
