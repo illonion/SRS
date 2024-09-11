@@ -166,10 +166,10 @@ socket.onmessage = event => {
     
         // Set widths of bar
         const movingScoreBarDifferencePercent = Math.min(currentScoreDelta / 1500000, 1)
-        let movingScoreBarRectangleWidth = Math.min(Math.pow(movingScoreBarDifferencePercent, 0.5) * 0.8 * 400, 400)
-        let currentScoreBar = (currentPurpleTeamName > currentBlueTeamScore)? purpleMovingScoreBarEl : blueMovingScoreBarEl
-        let otherScoreBar = (currentPurpleTeamName > currentBlueTeamScore)? blueMovingScoreBarEl : purpleMovingScoreBarEl
-        currentScoreBar.style.width = movingScoreBarRectangleWidth
+        let movingScoreBarRectangleWidth = Math.min(Math.pow(movingScoreBarDifferencePercent, 0.5) * 400, 400)
+        let currentScoreBar = (currentPurpleTeamScore > currentBlueTeamScore)? purpleMovingScoreBarEl : blueMovingScoreBarEl
+        let otherScoreBar = (currentPurpleTeamScore > currentBlueTeamScore)? blueMovingScoreBarEl : purpleMovingScoreBarEl
+        currentScoreBar.style.width = `${movingScoreBarRectangleWidth}px`
         otherScoreBar.style.width = "0px"
     }
 
